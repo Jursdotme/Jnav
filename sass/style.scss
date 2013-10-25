@@ -1,0 +1,267 @@
+@import "reset";
+@import "compass";
+
+
+body {
+	background: #ccc;
+	text-rendering: optimizeLegibility;
+	-webkit-font-smoothing: antialiased;
+	font-family: 'Montserrat', sans-serif;
+}
+* {
+	box-sizing:border-box;
+}
+
+.wrapper {
+	background: white;
+	max-width: 992px;
+	// height: 568px;
+	margin: 0px auto;
+	box-shadow: 0px 0px 5px 0px rgba(black, 0.5);
+}
+
+header {
+	position: relative;
+	height: 45px;
+	background: #E75F45;
+	box-shadow: 0 0 5px 0 rgba(black,0.5);
+	z-index: 100000;
+}
+
+$item: 6;
+$width: 100%;
+$nav-float: left;
+$navBackground: #452F31;
+
+//Desktop Nav
+nav#desktop {
+	width: 100%;
+	height: 45px;
+	white-space:nowrap;
+	background: $navBackground;
+	@media screen and (max-width: 640px) {
+		display: none;
+	}
+	a {
+		font-size: 13px;
+		text-decoration: none;
+		text-transform: uppercase;
+		font-family: 'Montserrat', sans-serif;
+		color: #E7DAB5;
+	}
+ > ul {
+ 	margin: 0 auto;
+	padding: 0;
+	float: $nav-float;
+	width: auto;
+ 	> li {  
+		float: left;
+		list-style: none;
+		position: relative;
+		width: auto;
+
+		border-left: 1px solid lighten($navBackground,10%);
+		border-right: 1px solid darken($navBackground,10%);
+		a {
+			display: block;
+			text-decoration: block;
+			text-align: center;
+			width: auto;
+			background: $navBackground;
+			height: 45px;
+			padding: 0 10px;
+			line-height: 45px;
+			&:hover { background: darken($navBackground,10%);}
+		}
+		> ul { 
+			display: none;
+			position: absolute;
+			background: $navBackground;
+			width: auto;
+			min-width: 125px;
+			> li { //Submenu item
+				width: auto;
+				border-top: 1px solid lighten($navBackground,10%);
+				border-bottom: 1px solid darken($navBackground,10%);
+				&:hover > ul {
+					display: block;
+				}
+				> ul {
+					display: none;
+					position: absolute;
+					left: 100%;
+					margin-top: -45px;
+					width: auto;
+					> li { //Sub-Submenu
+						width: 100%;
+						border-top: 1px solid lighten($navBackground,10%);
+						border-bottom: 1px solid darken($navBackground,10%);
+					} 
+				}
+			}
+		}
+		&:hover > ul { display: block;}
+ 	}
+ }
+}
+
+#desktop {
+	#label {
+		background: #52393A;
+		text-transform: uppercase;
+		font-weight: 700;
+		line-height: 30px;
+		margin: 0;
+		text-align: center;
+		color: #7B5E5E;
+		@include text-shadow( rgba(black, 0.3) 0px 1px 0 );
+		font-size: 13px; 
+		z-index: 99999999;
+		p { 
+			margin: 0;
+			padding: 0;
+		}
+	}
+}
+
+
+
+//Mobile Nav
+
+@font-face {
+    font-family: 'entypo';
+    src: url('../fonts/entypo.eot');
+    src: url('../fonts/entypo.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/entypo.woff') format('woff'),
+         url('../fonts/entypo.ttf') format('truetype'),
+         url('../fonts/entypo.svg#entypo') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+
+a#nav-toggle {
+		display: block;
+		right: 0;
+		position: absolute;
+		text-decoration: none;
+		font-family: 'Entypo';
+		color: #F9D9D1;
+		background: #EB7D69;
+		text-transform: uppercase;
+		font-weight: 200;
+		line-height: 35px;
+		font-size: 30px;
+		min-width: 36px;
+		margin: 5px;
+		border-radius: 5px;
+		text-align: center;
+	}
+
+a#nav-toggle, a#nav-toggle.open, a#nav-toggle.closed { 
+	display: none; 
+	@media screen and (max-width: 640px) {
+ 	 display: block;
+ }
+}
+
+#mobile .icon {
+	font-family: "Entypo";
+	position: absolute;
+	right: 0px;
+	z-index: 10;
+	padding: 0 14px;
+	font-size: 30px;
+}
+
+#mobile #label {
+	background: #52393A;
+	text-transform: uppercase;
+	font-weight: 700;
+	line-height: 30px;
+	margin: 0;
+	padding: 0 0 0 20px;
+	color: #7B5E5E;
+	@include text-shadow( rgba(black, 0.3) 0px 1px 0 );
+	font-size: 13px; 
+	z-index: 99999999;
+	p { 
+		margin: 0;
+		padding: 0;
+	}
+}
+
+#mobile .before-label  {
+	border-bottom: 1px solid lighten($navBackground,10%);
+}
+
+#mobile .after-label  {
+	border-top: 1px solid darken($navBackground,10%);
+}
+
+nav#mobile {
+	display: none;
+}
+
+nav#mobile > ul li.has-dropdown ul {
+	display: none;
+}
+
+// Overall Styles
+nav#mobile ul li {
+	position: relative; 
+}
+
+nav#mobile ul li a {	
+	background: $navBackground;
+	position: relative;
+	display: block;
+	text-decoration: none;
+	font-family: 'Montserrat', sans-serif;
+	color: #E7DAB5;
+	text-transform: uppercase;
+	font-weight: 700;
+	line-height: 45px;
+	padding: 0 0 0 20px;
+	border-top: 1px solid lighten($navBackground,10%);
+	border-bottom: 1px solid darken($navBackground,10%);
+	@include text-shadow( rgba(black, 0.4) 1px 1px 0 );
+	&:hover {
+		background: darken($navBackground, 3%);
+	}
+}
+
+// Top-level styles
+nav#mobile > ul > li > a {	
+	
+}
+
+// Second-level styles
+nav#mobile > ul > li > ul > li > a {	
+	padding: 0 0 0 40px;
+	background: darken($navBackground, 3%);
+	border-top: 1px solid lighten($navBackground,7%);
+	border-bottom: 1px solid darken($navBackground,13%);
+}
+
+// Third-level styles
+nav#mobile > ul > li > ul > li > ul > li > a {	
+	padding: 0 0 0 60px;
+	background: darken($navBackground, 6%);
+	border-top: 1px solid lighten($navBackground,4%);
+	border-bottom: 1px solid darken($navBackground,16%);
+}
+
+.content {
+	padding: 20px;
+}
+
+h1 {
+	font-size: 32px;
+	padding: 0 0 20px 0;
+}
+
+p {
+	padding: 0 0 16px 0;
+}
